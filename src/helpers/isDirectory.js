@@ -3,8 +3,7 @@ import { resolve } from 'node:path'
 
 export default async function isDirectory(path) {
   try {
-    path = resolve(path)
-    const stats = await stat(path)
+    const stats = await stat(resolve(path))
     return stats.isDirectory()
   }
   catch (error) {

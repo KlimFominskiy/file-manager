@@ -11,13 +11,11 @@ export default async function handleMv([pathToFile, pathToNewDirectory]) {
 
     if (isNotDirectory) throw new Error('invalid path_to_new_directory')
 
-    pathToFile = resolve(pathToFile)
-    const { base } = parse(pathToFile)
-    const readableStream = createReadStream(pathToFile)
-    pathToNewDirectory = resolve(pathToNewDirectory, base)
-    const writableStream = createWriteStream(pathToNewDirectory)
+    const { base } = parse(resolve(pathToFile))
+    const readableStream = createReadStream(resolve(pathToFile))
+    const writableStream = createWriteStream(resolve(pathToNewDirectory, base))
     await pipeline(readableStream, writableStream)
-    await unlink(pathToFile)
+    await unlink(resolve(pathToFile))
     displayCurrentDirectory()
   }
   catch (error) {

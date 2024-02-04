@@ -5,10 +5,9 @@ import displayCurrentDirectory from '../helpers/displayCurrentDirectory.js'
 
 export default async function handleCp([pathToFile, pathToNewDirectory]) {
   try {
-    pathToFile = resolve(pathToFile)
-    const { base } = parse(pathToFile)
+    const { base } = parse(resolve(pathToFile))
     pathToNewDirectory = resolve(pathToNewDirectory, base)
-    const readableStream = createReadStream(pathToFile)
+    const readableStream = createReadStream(resolve(pathToFile))
     const writableStream = createWriteStream(pathToNewDirectory)
     await pipeline(readableStream, writableStream)
     displayCurrentDirectory()

@@ -1,6 +1,5 @@
 export default function handleLine(eventEmitter, line) {
   try {
-    line = line.trim()
     let [command, ...args] = line.split(' ')
 
     if (/"|'/g.test(args)) {
@@ -22,7 +21,7 @@ export default function handleLine(eventEmitter, line) {
     else if (/^\.exit$/.test(command)) {
       this.close()
     }
-    else if (/^(?:up|ls)$/.test(line)) {
+    else if (/^(?:up|ls)$/.test(line.trim())) {
       eventEmitter.emit(command)
     }
     else {

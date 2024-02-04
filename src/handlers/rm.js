@@ -4,8 +4,7 @@ import displayCurrentDirectory from '../helpers/displayCurrentDirectory.js'
 
 export default async function handleRm([pathToFile]) {
   try {
-    pathToFile = resolve(pathToFile)
-    await unlink(pathToFile)
+    await unlink(resolve(pathToFile))
     displayCurrentDirectory()
   }
   catch (error) {

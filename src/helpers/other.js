@@ -1,7 +1,7 @@
 import { finished, Writable } from 'node:stream'
 import { promisify } from 'node:util'
 
-export const finishedAsync = promisify(finished)
+promisify(finished);
 
 export function customOutput() {
   return new Writable({

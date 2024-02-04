@@ -6,8 +6,7 @@ import { customOutput } from '../helpers/other.js'
 
 export default async function cat([pathToFile]) {
   try {
-    pathToFile = resolve(pathToFile)
-    const readableStream = createReadStream(pathToFile, { encoding: 'utf8' })
+    const readableStream = createReadStream(resolve(pathToFile), { encoding: 'utf8' })
     await pipeline(readableStream, customOutput())
     displayCurrentDirectory()
   }
